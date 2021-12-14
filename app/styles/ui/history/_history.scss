@@ -1,0 +1,138 @@
+@import '../../mixins';
+
+/** A React component holding the currently selected repository's history */
+#history {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  // Necessary so that the diff doesn't expand
+  // beyond the width of the history
+  min-width: 0;
+
+  &.expanded {
+    #commit-details {
+      display: none;
+    }
+  }
+}
+
+#commit-summary-container {
+  flex-grow: 0;
+}
+
+#commit-details {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+
+  .fill-window {
+    // necessary for "no files in commit" view to
+    // look right alongside blank diff
+    border-right: var(--base-border);
+  }
+
+  .panel {
+    display: flex;
+    flex: 1;
+
+    &.empty,
+    &.renamed,
+    &.binary {
+      justify-content: center;
+      align-items: center;
+    }
+    &.large-diff {
+      margin: var(--spacing-double);
+      text-align: center;
+      justify-content: initial;
+    }
+  }
+}
+
+#compare-view {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  .the-box {
+    flex: initial;
+    padding: var(--spacing-half);
+    border-bottom: var(--base-border);
+  }
+
+  .the-commits {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .merge-cta {
+    border-top: var(--base-border);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size-sm);
+    text-align: center;
+    padding: var(--spacing);
+  }
+
+  .merge-message {
+    margin-top: var(--spacing);
+  }
+
+  .branches-list-item .description {
+    margin-right: 0;
+  }
+
+  .branch-commit-counter {
+    display: flex;
+    justify-content: flex-end;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary-color);
+    flex-grow: 1;
+
+    .octicon {
+      fill: var(--text-secondary-color);
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .tab-bar {
+    padding: var(--spacing-half);
+    border-bottom: var(--base-border);
+    height: initial;
+
+    &-item {
+      box-shadow: none;
+      background: white;
+      border: var(--base-border);
+
+      &:first-of-type {
+        border-radius: var(--border-radius) 0 0 var(--border-radius);
+      }
+
+      &:last-of-type {
+        border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      }
+
+      &.selected {
+        background: var(--box-selected-active-background-color);
+        border-color: var(--box-border-accent-color);
+        color: var(--box-selected-active-text-color);
+      }
+    }
+  }
+
+  .select-component {
+    flex-grow: 0;
+  }
+
+  .compare-content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+  }
+}
